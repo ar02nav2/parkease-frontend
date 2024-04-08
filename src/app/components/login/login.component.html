@@ -1,0 +1,37 @@
+<main class="mx-auto flex min-h-screen w-full items-center justify-center text-white bg-cover bg-center bg-black bg-opacity-95" style="background-image: url('https://images.unsplash.com/photo-1517057970663-5d535acb0b3a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); background-repeat: no-repeat; background-size: cover;">
+
+  <section class="flex w-full max-w-md flex-col space-y-9 p-10 rounded-lg border border-gray-600 bg-black bg-opacity-80">
+    <h1 class="text-4xl font-bold text-center">LOG-IN</h1>
+    <form [formGroup]="loginForm" class="space-y-4">
+      <div class="form-group">
+        <input type="text" placeholder="Email" class="input-field" formControlName="email"/>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)">
+          <div *ngIf="email.errors?.['required']">
+            <span class="text-red-500 text-sm "> Enter an email address</span>
+          </div>
+          <div *ngIf="email.errors?.['email'] && (email.dirty || email.touched)">
+            <span class="text-red-500 text-sm "> Enter a valid email address</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <input type="password" placeholder="Password" class="input-field" formControlName="password" maxlength="20" minlength="5"/>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)">
+          <div *ngIf="password.errors?.['minlength']">
+            <span class="text-red-500 text-sm "> Password must be at least 5 characters</span>
+          </div>
+          <div *ngIf="password.errors?.['maxlength']">
+            <span class="text-red-500 text-sm "> Password must not exceed 20 characters</span>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">LOG IN</button>
+
+      <p class="text-center">
+        Don't have an account? <a href="#" class="text-red-500 hover:text-red-400" routerLink="/signup" routerLinkActive="active">Create One</a>
+      </p>
+    </form>
+  </section>
+</main>
